@@ -2,6 +2,7 @@
 
 namespace Fedeisas\LaravelMailCssInliner;
 
+use Swift_Events_SendEvent;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 class CssInlinerPlugin implements \Swift_Events_SendListener
@@ -9,12 +10,12 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
     /**
      * @param Swift_Events_SendEvent $evt
      */
-    public function beforeSendPerformed(\Swift_Events_SendEvent $evt)
+    public function beforeSendPerformed(Swift_Events_SendEvent $evt)
     {
         $message = $evt->getMessage();
 
         $converter = new CssToInlineStyles();
-        $converter->setEncoding($message->getCharset());
+        $converter->setStripOriginalStyleTags();
         $converter->setUseInlineStylesBlock();
         $converter->setCleanup();
 
@@ -38,7 +39,7 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
      *
      * @param Swift_Events_SendEvent $evt
      */
-    public function sendPerformed(\Swift_Events_SendEvent $evt)
+    public function sendPerformed(Swift_Events_SendEvent $evt)
     {
         // Do Nothing
     }
