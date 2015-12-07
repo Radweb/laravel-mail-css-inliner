@@ -44,20 +44,23 @@ Into this:
 ```
 
 ## Installation
-Begin by installing this package through Composer. Edit your project's `composer.json` file to require `fedeisas/laravel-mail-css-inliner`.
+Begin by installing this package through Composer. Edit your project's `composer.json` file to install from this repo instead of the listing on Packagist:
 
 ```json
 {
-  "require": {
-        "laravel/framework": "4.1.*",
-        "fedeisas/laravel-mail-css-inliner": "~1.3"
-    }
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/radweb/laravel-mail-css-inliner"
+		}
+	]
 }
 ```
 
-Next, update Composer from the Terminal:
+Next, install the package:
+
 ```bash
-$ composer update
+composer require fedeisas/laravel-mail-css-inliner
 ```
 
 Once this operation completes, the final step is to add the service provider. Open `app/config/app.php`, and add a new item to the providers array.
